@@ -1,10 +1,6 @@
-
-
 library(shiny)
 
 shinyUI(bootstrapPage(
-
-#shinyUI(pageWithSidebar(
 
     headerPanel("Correlation"),
 
@@ -42,10 +38,15 @@ shinyUI(bootstrapPage(
 
             br(),
 
-            strong("Scatter plot matrices"),
+            h3("Scatter plot matrices"),
+            downloadButton('downloadCorPlot', 'Download the plot as pdf'),
             plotOutput("corPlot"),
 
-            p(br())
+            br(),
+            br(),
+
+            strong('R session info'),
+            verbatimTextOutput("info.out")
 
             ),
 
@@ -56,6 +57,13 @@ shinyUI(bootstrapPage(
             p('This web application is developed with',
             a("Shiny.", href="http://www.rstudio.com/shiny/", target="_blank"),
             ''),
+
+            br(),
+
+            strong('List of Packages Used'), br(),
+            code('library(shiny)'),br(),
+            code('library(shinyAce)'),br(),
+            code('library(psych)'),br(),
 
             br(),
 
