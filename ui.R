@@ -1,8 +1,34 @@
 library(shiny)
+library(shinyAce)
+library(psych)
+
 
 shinyUI(bootstrapPage(
 
     headerPanel("Correlation"),
+
+########## Adding loading message #########
+
+tags$head(tags$style(type="text/css", "
+#loadmessage {
+position: fixed;
+top: 0px;
+left: 0px;
+width: 100%;
+padding: 10px 0px 10px 0px;
+text-align: center;
+font-weight: bold;
+font-size: 100%;
+color: #000000;
+background-color: #CCFF66;
+z-index: 105;
+}
+")),
+
+conditionalPanel(condition="$('html').hasClass('shiny-busy')",
+tags$div("Loading...",id="loadmessage")),
+
+########## Added up untill here ##########
 
     mainPanel(
         tabsetPanel(
@@ -11,11 +37,13 @@ shinyUI(bootstrapPage(
 
             strong('Option:'),
 
-            checkboxInput("colname", label = strong("Check if the data includes variable names in the 1st row."), value = T),
+            checkboxInput("colname", label = strong("The data includes variable names in the 1st row."), value = T),
 
             br(),
 
             p('Note: Input values must be separated by tabs. Copy and paste from Excel/Numbers.'),
+
+            p(HTML("<b><div style='background-color:#FADDF2;border:1px solid black;'>Missing values should be indicated by a period (.) or NA.</div></b>")),
 
             aceEditor("text", value="Test.A\tTest.B\n67\t70\n56\t68\n55\t66\n89\t77\n90\t100\n92\t60\n44\t55\n36\t44\n88\t76\n47\t55\n44\t45\n46\t88\n90\t88\n88\t78\n77\t89\n21\t33\n78\t87\n80\t67\n66\t87\n44\t57",
                 mode="r", theme="terminal"),
@@ -24,6 +52,12 @@ shinyUI(bootstrapPage(
 
             h3("Basic statistics"),
             verbatimTextOutput("textarea.out"),
+
+            br(),
+
+            h3("Box plots with individual data points"),
+
+            plotOutput("boxPlot", width="80%"),
 
             br(),
 
@@ -38,8 +72,13 @@ shinyUI(bootstrapPage(
 
             br(),
 
+            h4("95% confidence interval (CI)"),
+            verbatimTextOutput("ci.out"),
+
+            br(),
+
             h3("Scatter plot matrices"),
-            downloadButton('downloadCorPlot', 'Download the plot as pdf'),
+
             plotOutput("corPlot"),
 
             br(),
