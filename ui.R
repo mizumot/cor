@@ -1,6 +1,6 @@
 library(shiny)
 library(shinyAce)
-library(psych)
+
 
 
 shinyUI(bootstrapPage(
@@ -103,6 +103,7 @@ tags$div("Loading...",id="loadmessage")),
             code('library(shiny)'),br(),
             code('library(shinyAce)'),br(),
             code('library(psych)'),br(),
+            code('library(beeswarm)'),br(),
 
             br(),
 
@@ -118,6 +119,16 @@ tags$div("Loading...",id="loadmessage")),
             code('library(shiny)'),br(),
             code('runGitHub("cor","mizumot")')
             ),
+
+            br(),
+
+            strong('Citation in Publications'),
+            p('Mizumoto, A. (2015). Langtest (Version 1.0) [Web application]. Retrieved from http://langtest.jp'),
+
+            br(),
+
+            strong('Article'),
+            p('Mizumoto, A., & Plonsky, L. (2015).', a("R as a lingua franca: Advantages of using R for quantitative research in applied linguistics.", href='http://applij.oxfordjournals.org/content/early/2015/06/24/applin.amv025.abstract', target="_blank"), em('Applied Linguistics,'), 'Advance online publication. doi:10.1093/applin/amv025'),
 
             br(),
 
