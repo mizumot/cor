@@ -62,7 +62,7 @@ shinyServer(function(input, output) {
                            Spearman = "spearman",
                            Kendall = "kendall")
 
-            round(cor(cbind(x), method = type, use = "complete"),3)
+            round(cor(cbind(x), method = type, use = "pairwise.complete.obs"),3)
 
         } else {
             x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
@@ -72,7 +72,7 @@ shinyServer(function(input, output) {
                            Spearman = "spearman",
                            Kendall = "kendall")
 
-            round(cor(cbind(x), method = type, use = "complete"),3)
+            round(cor(cbind(x), method = type, use = "pairwise.complete.obs"),3)
         }
     })
 
