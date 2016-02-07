@@ -54,7 +54,8 @@ shinyServer(function(input, output) {
     correl <- reactive({
 
         if (input$colname == 0) {
-            x <- read.table(text=input$text, sep="", na.strings=c("","NA","."))
+            # x <- read.table(text=input$text, sep="", na.strings=c("","NA","."))
+            x <- read.table(text=input$text, sep="\t")
             x <- as.matrix(x)
 
             type <- switch(input$method,
@@ -65,7 +66,8 @@ shinyServer(function(input, output) {
             round(cor(cbind(x), method = type, use = "pairwise.complete.obs"),3)
 
         } else {
-            x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+            # x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+            x <- read.csv(text=input$text, sep="\t")
 
             type <- switch(input$method,
                            Pearson = "pearson",
@@ -85,10 +87,14 @@ shinyServer(function(input, output) {
     ci <- reactive({
 
         if (input$colname == 0) {
-          x <- read.csv(text=input$text, header=FALSE, sep="", na.strings=c("","NA","."))
+            #x <- read.csv(text=input$text, header=FALSE, sep="", na.strings=c("","NA","."))
+          x <- read.csv(text=input$text, header=FALSE, sep="\t")
+
         } else {
 
-          x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+        # x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+          x <- read.csv(text=input$text, sep="\t")
+
 
         }
 
@@ -158,7 +164,8 @@ shinyServer(function(input, output) {
 
     makecorPlot <- function(){
         if (input$colname == 0) {
-            x <- read.table(text=input$text, sep="", na.strings=c("","NA","."))
+            #x <- read.table(text=input$text, sep="", na.strings=c("","NA","."))
+            x <- read.table(text=input$text, sep="\t")
             x <- as.matrix(x)
 
             type <- switch(input$method,
@@ -169,7 +176,8 @@ shinyServer(function(input, output) {
             pairs.panels(x, method = type)
 
         } else {
-            x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+            # x <- read.csv(text=input$text, sep="", na.strings=c("","NA","."))
+            x <- read.csv(text=input$text, sep="\t")
 
             type <- switch(input$method,
                         Pearson = "pearson",

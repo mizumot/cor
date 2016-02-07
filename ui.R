@@ -37,13 +37,13 @@ tags$div("Loading...",id="loadmessage")),
 
             strong('Option:'),
 
-            checkboxInput("colname", label = strong("The data includes variable names in the 1st row."), value = T),
+            checkboxInput("colname", label = strong("The data includes variable names in the first row."), value = T),
 
-            br(),
+            # br(),
 
             p('Note: Input values must be separated by tabs. Copy and paste from Excel/Numbers.'),
 
-            p(HTML("<b><div style='background-color:#FADDF2;border:1px solid black;'>Missing values should be indicated by a period (.) or NA.</div></b>")),
+            # p(HTML("<b><div style='background-color:#FADDF2;border:1px solid black;'>Missing values should be indicated by a period (.) or NA.</div></b>")),
 
             aceEditor("text", value="Test.A\tTest.B\n67\t70\n56\t68\n55\t66\n89\t77\n90\t100\n92\t60\n44\t55\n36\t44\n88\t76\n47\t55\n44\t45\n46\t88\n90\t88\n88\t78\n77\t89\n21\t33\n78\t87\n80\t67\n66\t87\n44\t57",
                 mode="r", theme="terminal"),
